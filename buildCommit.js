@@ -43,7 +43,13 @@ const addFooter = (footer, config) => {
 
   const footerPrefix = config && config.footerPrefix ? config.footerPrefix : 'ISSUES CLOSED:';
 
-  return `\n\n${footerPrefix} ${addBreaklinesIfNeeded(footer, config.breaklineChar)}`;
+  const footers = footer.split(',');
+  let str = '';
+  footers.forEach(foot => {
+    str += `\n\n${footerPrefix}${addBreaklinesIfNeeded(foot, config.breaklineChar)}\n`;
+  });
+
+  return str;
 };
 
 const escapeSpecialChars = result => {
